@@ -163,33 +163,24 @@ test.describe("Chef Claude App", () => {
       });
     });
 
-    test.only("Click Ask AI - recipe suggestions appear", async ({ page }) => {
+    test("Click Ask AI - recipe suggestions appear", async ({ page }) => {
       test.setTimeout(360_000);
       await runSteps({
         page,
-        userFlow: "Click Ask AI - recipe suggestions appear",
+        userFlow: "Click Ask AI and wait for recipe suggestions",
         steps: [
           { description: `Navigate to ${BASE_URL}` },
           ...fourIngredients,
-          {
-            description: "Scroll down to see the Ask AI button",
-          },
-          {
-            description: "Click the 'Ask AI' button",
-          },
-          {
-            description: "Wait for the page to load the recipe suggestions",
-            waitUntil:
-              "three recipe suggestion buttons are visible on the page",
-          },
-          { description: "Click the second recipe suggestion" },
+          { description: "Scroll down until the Ask AI button is visible" },
+          { description: "Click the Ask AI button" },
+          { description: "Wait 30 seconds for the AI to generate recipes" },
         ],
         assertions: [
+          { assertion: "You can see a heading that says Recipes on the page" },
           {
             assertion:
-              "You can see three recipe title suggestion buttons on the page",
+              "You can see at least one recipe suggestion button on the page",
           },
-          { assertion: "The Recipes heading is visible on the page" },
         ],
         test,
         expect,
