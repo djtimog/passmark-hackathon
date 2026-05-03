@@ -5,7 +5,7 @@ const BASE_URL = "https://pixelcore-gaming.vercel.app/";
 const EMAIL = process.env.PIXELCORE_EMAIL!;
 const PASSWORD = process.env.PIXELCORE_PASSWORD!;
 const TIMEOUT = 240_000;
-const PROTECTEDPAGES_TIMEOUT = 480_000;
+const PROTECTEDPAGES_TIMEOUT = 360_000;
 
 const navigateTo = (path: string) => [
   { description: `Navigate to ${BASE_URL}${path}` },
